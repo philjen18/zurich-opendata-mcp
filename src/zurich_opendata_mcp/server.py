@@ -567,13 +567,28 @@ async def zurich_analyze_datasets(params: AnalyzeDatasetInput) -> str:
             title = ds.get("title", "?")
             modified = ds.get("metadata_modified", "?")[:10]
             interval = ds.get("updateInterval", ["unbekannt"])
-            resources = ds.get("resources", [])
+
+            # Fetch full resource details via package_show
+            try:
+                full_ds = await ckan_request("package_show", {"id": name})
+                resources = full_ds.get("resources", [])
+            except Exception:
+                resources = ds.get("resources", [])
+
             formats = sorted(set(r.get("format", "?") for r in resources))
 
             lines.append(f"### {i}. {title}")
             lines.append(f"- **ID**: `{name}`")
             lines.append(f"- **Formate**: {', '.join(formats)}")
             lines.append(f"- **Ressourcen**: {len(resources)}")
+
+            # List all resource UUIDs so downstream tools can use them
+            for res in resources:
+                res_id = res.get("id", "")
+                res_name = res.get("name", "Unbenannt")
+                res_format = res.get("format", "?")
+                ds_active = "✔ DataStore" if res.get("datastore_active") else ""
+                lines.append(f"  - `{res_id}` — {res_name} ({res_format}) {ds_active}")
 
             if params.include_freshness:
                 lines.append(f"- **Letzte Änderung**: {modified}")

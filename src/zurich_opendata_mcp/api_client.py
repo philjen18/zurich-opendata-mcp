@@ -130,6 +130,7 @@ def format_dataset_summary(dataset: dict[str, Any]) -> str:
     update_interval = dataset.get("updateInterval", [])
     groups = [g.get("title", g.get("name", "")) for g in dataset.get("groups", [])]
     tags = [t.get("display_name", t.get("name", "")) for t in dataset.get("tags", [])]
+    resources = dataset.get("resources", [])
 
     url = f"{CKAN_BASE_URL}/dataset/{name}"
 
@@ -147,6 +148,13 @@ def format_dataset_summary(dataset: dict[str, Any]) -> str:
         lines.append(f"- **Kategorien**: {', '.join(groups)}")
     if tags:
         lines.append(f"- **Tags**: {', '.join(tags[:10])}")
+    if resources:
+        for res in resources:
+            res_id = res.get("id", "")
+            res_name = res.get("name", "Unbenannt")
+            res_format = res.get("format", "?")
+            ds_active = " ✔ DataStore" if res.get("datastore_active") else ""
+            lines.append(f"  - `{res_id}` — {res_name} ({res_format}){ds_active}")
     if notes:
         lines.append(f"- **Beschreibung**: {notes}...")
     lines.append(f"- **URL**: {url}")
@@ -156,9 +164,11 @@ def format_dataset_summary(dataset: dict[str, Any]) -> str:
 
 def format_resource_info(resource: dict[str, Any]) -> str:
     """Format a CKAN resource into a readable summary."""
+    res_id = resource.get("id", "")
+    ds_active = " ✔ DataStore" if resource.get("datastore_active") else ""
     return (
-        f"  - **{resource.get('name', 'Unbenannt')}** "
-        f"({resource.get('format', '?')}) – "
+        f"  - `{res_id}` **{resource.get('name', 'Unbenannt')}** "
+        f"({resource.get('format', '?')}){ds_active} – "
         f"{resource.get('url', 'Keine URL')}"
     )
 
