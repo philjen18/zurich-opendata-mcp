@@ -267,17 +267,13 @@ async def test_tourism():
 
 async def test_sparql():
     print("=" * 60)
-    print("TEST 20: zurich_sparql (Bevölkerung)")
+    print("TEST 20: zurich_sparql (nicht-produktiv Warnung)")
     print("=" * 60)
     result = await zurich_sparql(SparqlQueryInput(
-        query="""SELECT ?year ?pop WHERE {
-  <https://ld.stadt-zuerich.ch/statistics/observation/BEW/R00000/Z0000/T0001> 
-    <https://ld.stadt-zuerich.ch/statistics/property/ZEIT> ?year ;
-    <https://ld.stadt-zuerich.ch/statistics/measure/BEW> ?pop .
-} ORDER BY DESC(?year) LIMIT 5"""
+        query="SELECT ?s WHERE { ?s ?p ?o } LIMIT 1"
     ))
     print(result[:500])
-    assert "year" in result.lower() or "pop" in result.lower() or "Ergebnis" in result or "SPARQL" in result
+    assert "nicht produktiv" in result, "Sollte Warnung über nicht-produktiven Endpunkt zeigen"
     print("✅ PASSED\n")
 
 

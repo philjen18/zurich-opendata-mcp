@@ -1850,14 +1850,24 @@ class SparqlQueryInput(BaseModel):
     },
 )
 async def zurich_sparql(params: SparqlQueryInput) -> str:
-    """Führt eine SPARQL-Abfrage auf dem Linked-Data-Endpunkt der Stadt Zürich aus.
-
-    Der Endpunkt (ld.stadt-zuerich.ch) enthält statistische Daten
-    der Stadt Zürich als RDF Linked Data (Bevölkerung, Wirtschaft, Bildung etc.).
+    """⚠️ NICHT PRODUKTIV – Der Linked-Data-Endpunkt (ld.stadt-zuerich.ch) ist
+    noch nicht mit echten Daten befüllt. Abfragen liefern leere oder
+    unvollständige Ergebnisse. Bitte stattdessen zurich_search_datasets oder
+    zurich_datastore_query/zurich_datastore_sql verwenden.
 
     Returns:
-        Tabellarische Darstellung der SPARQL-Ergebnisse
+        Hinweis auf nicht-produktiven Endpunkt
     """
+    return (
+        "⚠️ **SPARQL-Endpunkt nicht produktiv**\n\n"
+        f"Der Linked-Data-Endpunkt (`{SPARQL_URL}`) ist derzeit noch nicht "
+        "mit echten Daten befüllt. Abfragen liefern leere oder unvollständige Ergebnisse.\n\n"
+        "**Alternativen:**\n"
+        "- `zurich_search_datasets` – Datensätze suchen\n"
+        "- `zurich_datastore_query` – Tabellarische Daten per Resource-UUID abfragen\n"
+        "- `zurich_datastore_sql` – SQL-Abfragen auf DataStore-Ressourcen"
+    )
+    # ── Original-Implementation (deaktiviert bis Endpunkt produktiv) ──
     try:
         # Safety: only allow SELECT queries
         query_upper = params.query.strip().upper()
