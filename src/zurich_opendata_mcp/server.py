@@ -103,8 +103,11 @@ async def zurich_search_datasets(params: SearchDatasetsInput) -> str:
         Markdown-formatierte Liste mit Datensatz-Zusammenfassungen
     """
     try:
+        # Solr behandelt q=* anders als q=*:* – nur letzteres liefert alle Datensätze
+        query = "*:*" if params.query.strip() == "*" else params.query
+
         api_params: dict = {
-            "q": params.query,
+            "q": query,
             "rows": params.rows,
             "start": params.offset,
         }
@@ -241,6 +244,14 @@ async def zurich_datastore_query(params: DatastoreQueryInput) -> str:
             "offset": params.offset,
         }
         if params.filters:
+            try:
+                json.loads(params.filters)
+            except (json.JSONDecodeError, TypeError):
+                return (
+                    "Fehler: `filters` muss gültiges JSON sein, "
+                    'z.B. `{"Quartier": "Wiedikon"}`. '
+                    f"Erhalten: `{params.filters[:100]}`"
+                )
             api_params["filters"] = params.filters
         if params.query:
             api_params["q"] = params.query
@@ -313,6 +324,12 @@ async def zurich_datastore_sql(params: DatastoreSqlInput) -> str:
         JSON-Ergebnisse der SQL-Abfrage
     """
     try:
+        if not params.sql.strip().upper().startswith("SELECT"):
+            return (
+                "Fehler: Nur SELECT-Abfragen sind erlaubt. "
+                "DROP, INSERT, UPDATE, DELETE und andere Statements sind nicht gestattet."
+            )
+
         result = await ckan_request("datastore_search_sql", {"sql": params.sql})
         records = result.get("records", [])
         fields = result.get("fields", [])
